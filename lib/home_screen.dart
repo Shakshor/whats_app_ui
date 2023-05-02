@@ -1,4 +1,11 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:badges/badges.dart' as badges;
+import 'package:pin_code_fields/pin_code_fields.dart';
+// import 'package:readmore/readmore.dart';
+
 
 
 class HomeScreen extends StatefulWidget {
@@ -37,7 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // sidebar && pop-up menu
             actions: [
-              const Icon(Icons.search),
+
+              // fontAwesomeIcon
+              const Icon(FontAwesomeIcons.searchengin),
               const SizedBox(width: 10,),
               PopupMenuButton(
                   icon: const Icon(Icons.more_vert_outlined),
@@ -56,6 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ]),
               SizedBox(width: 10,),
+
+              const Center(
+                child: badges.Badge(
+                  badgeContent: Text('2'),
+                  badgeAnimation: badges.BadgeAnimation.slide(
+                    animationDuration: Duration(seconds: 5),
+                  ),
+                  child: Icon(Icons.shopping_cart),
+                ),
+              ),
+
+              SizedBox(width: 20,)
             ],
 
           ),
@@ -65,7 +86,52 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
 
               // camera view
-              const Text('camera'),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+
+                children:  [
+
+                  Text('3333'),
+                  SizedBox(height: 10,),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: PinCodeTextField(
+                        appContext: context,
+                        keyboardType: TextInputType.number,
+                        obscureText: true,
+                        length: 6,
+                        cursorColor: Colors.teal,
+                        enabled: true,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(10),
+                          fieldHeight: 50,
+                          fieldWidth: 40,
+
+                          selectedColor: Colors.grey,
+                          selectedFillColor: Colors.grey.shade400,
+
+                          activeColor: Colors.green,
+                          activeFillColor: Colors.green.shade400,
+
+                          inactiveColor: Colors.red,
+
+
+                        ),
+                        onChanged: (value){
+
+                        }),
+                  ),
+
+
+                  SizedBox(height: 10,),
+
+                  Text('camera'),
+                ],
+              ),
+
 
               // chats view
               ListView.builder(
@@ -154,6 +220,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   }),
             ],
           ),
+
+
         ));
   }
 }
